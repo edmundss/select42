@@ -1,0 +1,31 @@
+{
+  "name": "select42",
+  "private": true,
+  "version": "0.0.0",
+  "main": "./dist/select42.umd.js",
+  "module": "./dist/select42.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/select42.es.js",
+      "require": "./dist/select42.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^4.4.5"
+  }
+}

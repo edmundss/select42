@@ -193,6 +193,11 @@ export default {
   </script>
   
 <style>
+    .select42-container .dropdown-wrapper {
+        position: absolute;
+        width: 100%;
+    }
+    
     .select42-container .select42-selection--single .select42-selection__arrow {
         fill: #888;
         height: 20px;

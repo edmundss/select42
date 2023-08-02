@@ -1,7 +1,6 @@
 {
-  "name": "select42",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@sulzanoks/select42",
+  "version": "0.0.1",
   "main": "./dist/select42.umd.js",
   "module": "./dist/select42.es.js",
   "exports": {

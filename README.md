@@ -2,6 +2,8 @@
 
 Select42 is a Vue.js component that replicates the functionality of Select2 without the need for jQuery. It provides a customizable and user-friendly dropdown for selecting options. The component is built with Vue.js and does not have any external dependencies other than Vue itself.
 
+DISCLAIMER: This is my first NPM package. developed for my specific needs. Use at your own risk. No support. May require bootstrap 5.
+
 ## Installation
 You can install the Select42 component using npm:
 ```
@@ -17,21 +19,20 @@ To use the Select42 component, you can import it into your Vue project and regis
     <select42
       :options="options"
       :placeholder="placeholder"
-      :theme="theme"
-      :dropdownPosition="dropdownPosition"
       :ajaxUrl="ajaxUrl"
       :showSearch="showSearch"
-      @option-selected="handleOptionSelected"
+      @update="handleOptionSelected"
     ></select42>
   </div>
 </template>
 
 <script>
 import Select42 from "select42";
+import 'select42/dist/style.css';
 
 export default {
   components: {
-    Select42,
+    select42,
   },
   data() {
     return {
@@ -41,8 +42,6 @@ export default {
                 { value: '3', text: 'Three' },
       ],
       placeholder: "Select an option",
-      theme: "primary",
-      dropdownPosition: "bottom",
       ajaxUrl: "", // Your AJAX endpoint URL here, if applicable
       showSearch: true,
     };
@@ -56,7 +55,7 @@ export default {
 </script>
 ```
 
-##Props
+## Props
 | Property        | Type    | Default           | Description                                                                                                                                                            |
 |-----------------|---------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | options         | Array   | `[]`              | An array of objects representing the available options for the dropdown. Each object should have the properties `value` and `text`.                                    |
@@ -67,13 +66,13 @@ export default {
 | showSearch      | Boolean | `true`            | A boolean indicating whether to display the search input within the dropdown. Default is `true`.                                                                       |
 
 
-##Events
+## Events
 @update: This event is emitted when an option is selected. The selected option object is passed as the event payload.
 ##Methods
 toggleDropdown: Toggles the visibility of the dropdown.
 
-##Slots
+## Slots
 None.
 
-##License
+## License
 Select42 is released under the MIT License. Feel free to use and modify it according to your needs.

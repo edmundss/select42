@@ -36,7 +36,9 @@ export default {
   data() {
     return {
       options: [
-        // Your options array here...
+                { value: '1', text: 'One' },
+                { value: '2', text: 'Two' },
+                { value: '3', text: 'Three' },
       ],
       placeholder: "Select an option",
       theme: "primary",
@@ -57,25 +59,21 @@ export default {
 ##Props
 | Property        | Type    | Default           | Description                                                                                                                                                            |
 |-----------------|---------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| options         | Array   | `[]`              | An array of objects representing the available options for the dropdown. Each object should have the properties `value` and `text`.                                  |
-| placeholder     | String  | "Select an option"| The text to display when no option is selected.                                                                                                                      |
-| theme           | String  | "primary"         | The CSS class name for customizing the appearance of the component.                                                                                                  |
-| dropdownPosition| String  | "bottom"          | The position of the dropdown relative to the select box. Possible values are "bottom" (default) or "top".                                                            |
-| ajaxUrl         | String  | `null`            | The URL to fetch options asynchronously when searching. If provided, the component will perform a search using this URL.                                              |
-| showSearch      | Boolean | `true`            | A boolean indicating whether to display the search input within the dropdown. Default is `true`.                                                                    |
+| options         | Array   | `[]`              | An array of objects representing the available options for the dropdown. Each object should have the properties `value` and `text`.                                    |
+| placeholder     | String  | "Select an option"| The text to display when no option is selected.                                                                                                                        |
+| theme           | String  | "primary"         | NOT IMPLEMENTED! The CSS class name for customizing the appearance of the component.                                                                                   |
+| dropdownPosition| String  | "bottom"          | NOT IMPLEMENTED! The position of the dropdown relative to the select box. Possible values are "bottom" (default) or "top".                                             |
+| ajaxUrl         | String  | `null`            | The URL to fetch options asynchronously when searching. If provided, the component will perform a search using this URL.                                               |
+| showSearch      | Boolean | `true`            | A boolean indicating whether to display the search input within the dropdown. Default is `true`.                                                                       |
 
 
-Events
-@option-selected: This event is emitted when an option is selected. The selected option object is passed as the event payload.
-Methods
+##Events
+@update: This event is emitted when an option is selected. The selected option object is passed as the event payload.
+##Methods
 toggleDropdown: Toggles the visibility of the dropdown.
 
-Slots
-The Select42 component also supports slots for customizing the content inside the dropdown.
+##Slots
+None.
 
-default: Use this slot to customize the content of the dropdown options. Provide the content within <li> elements.
-Styling
-You can customize the appearance of the Select42 component by adding your own CSS classes or overriding the default classes provided in the component.
-
-License
+##License
 Select42 is released under the MIT License. Feel free to use and modify it according to your needs.

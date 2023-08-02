@@ -67,8 +67,9 @@ export default {
 
 
 ## Events
-@update: This event is emitted when an option is selected. The selected option object is passed as the event payload.
-##Methods
+**@update:** This event is emitted when an option is selected. The selected option object is passed as the event payload.
+
+## Methods
 toggleDropdown: Toggles the visibility of the dropdown.
 
 ## Slots

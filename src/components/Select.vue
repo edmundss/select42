@@ -16,7 +16,7 @@
             >
                 <span class="select42-selection__rendered">
                     <span v-show="!value" class="select42-selection__placeholder">{{ placeholder }}</span>
-                    {{ selectedOption.text }}
+                    {{ selectedOption?.text }}
                 </span>
                 <svg class="select42-selection__arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 10l5 5 5-5z"/>
@@ -50,7 +50,7 @@
                             class="select42-results__option select42-results__option--selectable"
                             :class="{
                                 'select42-results__option--highlighted': highlightIndex === index,
-                                'select42-results__option--selected': selectedOption.value === option.value,
+                                'select42-results__option--selected': selectedOption?.value === option.value,
                                 'select42-results__option--disabled': option.disabled === 'true',
                             }"
                             @mouseover="highlightIndex = index"
@@ -108,7 +108,7 @@ export default {
     },
     computed: {
         value() {
-            return this.selectedOption.value;
+            return this.selectedOption?.value;
         }
     },
     methods: {
@@ -197,7 +197,7 @@ export default {
         position: absolute;
         width: 100%;
     }
-    
+
     .select42-container .select42-selection--single .select42-selection__arrow {
         fill: #888;
         height: 20px;

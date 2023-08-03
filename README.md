@@ -7,7 +7,7 @@ DISCLAIMER: This is my first NPM package. developed for my specific needs. Use a
 ## Installation
 You can install the Select42 component using npm:
 ```
-npm install select42
+npm install @sulzanoks/select42
 ```
 
 ## Usage

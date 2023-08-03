@@ -67,6 +67,7 @@ export default {
 
 ## For convenience
 **value**: you can access selected value anytime with `this.$refs.mySelect42Ref.value` (where `mySelect42Ref` is ref name of your choice).
+
 **selectedOption**: In case you've passed some extra data to options, you can access the whole selected option object with `this.$refs.mySelect42Ref.selectedOption` (where `mySelect42Ref` is ref name of your choice).
 
 ## Events

@@ -196,6 +196,7 @@ export default {
     .select42-container .dropdown-wrapper {
         position: absolute;
         width: 100%;
+        z-index: 99999;
     }
 
     .select42-container .select42-selection--single .select42-selection__arrow {

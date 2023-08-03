@@ -27,8 +27,8 @@ To use the Select42 component, you can import it into your Vue project and regis
 </template>
 
 <script>
-import Select42 from "select42";
-import 'select42/dist/style.css';
+import Select42 from "@sulzanoks/select42";
+import '@sulzanoks/select42/dist/style.css';
 
 export default {
   components: {

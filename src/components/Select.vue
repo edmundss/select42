@@ -1,9 +1,9 @@
 <template>
     <span
-        tabindex="0"
-        class="select42 select42-container"
-        :class="[theme ? 'select42-' + theme : '', dropdownPosition ? 'select42-dropdown--' + dropdownPosition : '']"
-        ref="select42"
+    tabindex="0"
+    class="select42 select42-container"
+    :class="[theme ? 'select42-' + theme : '', dropdownPosition ? 'select42-dropdown--' + dropdownPosition : '']"
+    ref="select42"
     >
         <span 
             class="selection"
@@ -61,6 +61,7 @@
             </span>
         </span>
     </span>
+
 </template>
   
 <script>
@@ -92,11 +93,11 @@ export default {
             default: true,
         },
         modelValue: {
-            type: String,
+            type: [String, Number],
             default: "",
         },
     },
-    emits: ["update:modelValue"],
+    emits: ["update"],
     data() {
         return {
             displayOptions: [],
@@ -136,7 +137,8 @@ export default {
         selectOption(option) {
             this.selectedOption = option;
             this.toggleDropdown();
-            this.$emit("update:modelValue", option.value);
+            console.log('selectOption', option);
+            this.$emit("update", option.value);
         },
         handleOutsideClick(event) {
             const select42 = this.$refs.select42;
@@ -148,7 +150,7 @@ export default {
         },
         // method to sreach the options
         filterOptions() {
-            this.displayOptions = options.filter(option => option.text.toLowerCase().includes(this.searchTerm.toLowerCase()));
+            this.displayOptions = this.options.filter(option => option.text.toLowerCase().includes(this.searchTerm.toLowerCase()));
         },
         fetchOptions() {
             axios.get(this.ajaxUrl, {

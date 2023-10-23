@@ -5,6 +5,10 @@
     :class="[theme ? 'select42-' + theme : '', dropdownPosition ? 'select42-dropdown--' + dropdownPosition : '']"
     ref="select42"
     >
+        <input
+            type="hidden"
+            :value="value"
+        />
         <span 
             class="selection"
             @click="toggleDropdown"
@@ -97,7 +101,7 @@ export default {
             default: "",
         },
     },
-    emits: ["update"],
+    emits: ["update:modelValue"],
     data() {
         return {
             displayOptions: [],
@@ -108,8 +112,13 @@ export default {
         };
     },
     computed: {
-        value() {
-            return this.selectedOption?.value;
+        value: {
+            get() {
+                return this.modelValue
+            },
+            set(value) {
+                this.$emit('update:modelValue', value)
+            }
         }
     },
     methods: {
@@ -138,7 +147,7 @@ export default {
             this.selectedOption = option;
             this.toggleDropdown();
             console.log('selectOption', option);
-            this.$emit("update", option.value);
+            this.value = option.value;
         },
         handleOutsideClick(event) {
             const select42 = this.$refs.select42;

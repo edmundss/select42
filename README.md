@@ -71,7 +71,8 @@ export default {
 **selectedOption**: In case you've passed some extra data to options, you can access the whole selected option object with `this.$refs.mySelect42Ref.selectedOption` (where `mySelect42Ref` is ref name of your choice).
 
 ## Events
-**@update:** This event is emitted when an option is selected. The selected option object is passed as the event payload.
+**@update:modelValue**: This event is emitted when an option is selected. The selected option value is passed as the event payload.
+**@update:object**: This event is emitted when an option is selected. The selected option object is passed as the event payload.
 
 ## Methods
 toggleDropdown: Toggles the visibility of the dropdown.

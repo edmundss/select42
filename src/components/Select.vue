@@ -101,7 +101,7 @@ export default {
             default: "",
         },
     },
-    emits: ["update:modelValue"],
+    emits: ["update:modelValue", "update:object"],
     data() {
         return {
             displayOptions: [],
@@ -118,6 +118,7 @@ export default {
             },
             set(value) {
                 this.$emit('update:modelValue', value)
+                this.$emit('update:object', this.selectedOption)
             }
         }
     },
@@ -146,7 +147,6 @@ export default {
         selectOption(option) {
             this.selectedOption = option;
             this.toggleDropdown();
-            console.log('selectOption', option);
             this.value = option.value;
         },
         handleOutsideClick(event) {

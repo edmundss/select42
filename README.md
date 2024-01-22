@@ -72,6 +72,7 @@ export default {
 
 ## Events
 **@update:modelValue**: This event is emitted when an option is selected. The selected option value is passed as the event payload.
+
 **@update:object**: This event is emitted when an option is selected. The selected option object is passed as the event payload.
 
 ## Methods

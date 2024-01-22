@@ -69,6 +69,8 @@
 </template>
   
 <script>
+import axios from "axios";
+
 export default {
     name: "Select42",
     props: {

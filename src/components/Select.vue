@@ -198,7 +198,6 @@ export default {
         },
     },
     mounted() {
-        console.log(this.selectedOption);
         this.displayOptions = this.options;
         this.selectedOption = this.options.find(option => option.value == this.modelValue);
     },

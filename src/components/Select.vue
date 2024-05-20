@@ -19,7 +19,7 @@
                 tabindex="-1"
             >
                 <span class="select42-selection__rendered">
-                    <span v-show="!value" class="select42-selection__placeholder">{{ placeholder }}</span>
+                    <span v-show="value == null" class="select42-selection__placeholder">{{ placeholder }}</span>
                     {{ selectedOption?.text }}
                 </span>
                 <svg class="select42-selection__arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

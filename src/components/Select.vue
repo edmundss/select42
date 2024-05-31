@@ -124,6 +124,21 @@ export default {
             }
         }
     },
+    // watch for changes in the modelValue
+    watch: {
+        modelValue: {
+            immediate: true,
+            handler(value) {
+                // if modelValue is empty, set the selectedOption to null
+                if (!value) {
+                    this.selectedOption = null;
+                } else {
+                    // find the selected option
+                    this.selectedOption = this.options.find(option => option.value == value);
+                }
+            }
+        }
+    },
     methods: {
         toggleDropdown() {
             this.showDropdown = !this.showDropdown;

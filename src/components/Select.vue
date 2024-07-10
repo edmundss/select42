@@ -9,11 +9,11 @@
             type="hidden"
             :value="value"
         />
-        <span 
+        <span
             class="selection"
             @click="toggleDropdown"
         >
-            <span 
+            <span
                 class="select42-selection select42-selection--single"
                 :class="{'open': showDropdown}"
                 tabindex="-1"
@@ -37,19 +37,19 @@
                     <input
                         @input="handleSearch"
                         @keydown="handleKeydown"
-                        class="select42-search__field" 
-                        type="search" 
-                        tabindex="0" 
-                        autocorrect="off" 
-                        autocapitalize="none" 
+                        class="select42-search__field"
+                        type="search"
+                        tabindex="0"
+                        autocorrect="off"
+                        autocapitalize="none"
                         spellcheck="false"
-                        autocomplete="off" 
+                        autocomplete="off"
                         v-model="searchTerm"
                     />
                 </span>
                 <span class="select42-results">
                     <ul class="select42-results__options" role="listbox">
-                        <li 
+                        <li
                             v-for="(option, index) in displayOptions" :key="index"
                             class="select42-results__option select42-results__option--selectable"
                             :class="{
@@ -67,7 +67,7 @@
     </span>
 
 </template>
-  
+
 <script>
 import axios from "axios";
 
@@ -129,12 +129,14 @@ export default {
         modelValue: {
             immediate: true,
             handler(value) {
+                console.log(value);
                 // if modelValue is empty, set the selectedOption to null
                 if (!value) {
                     this.selectedOption = null;
                 } else {
                     // find the selected option
-                    this.selectedOption = this.options.find(option => option.value == value);
+                    console.log(this.options);
+                    this.selectedOption = this.displayOptions.find(option => option.value == value);
                 }
             }
         }
@@ -204,7 +206,7 @@ export default {
             }
         },
         handleSearch() {
-            
+
             if(this.ajaxUrl) {
                 this.fetchOptions();
             } else {
@@ -218,7 +220,7 @@ export default {
     },
   };
   </script>
-  
+
 <style>
     .select42-container .dropdown-wrapper {
         position: absolute;
@@ -383,4 +385,3 @@ export default {
         line-height: 1.42857 !important;
     }
 </style>
-  

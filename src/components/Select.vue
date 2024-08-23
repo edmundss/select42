@@ -246,8 +246,12 @@ export default {
         height: 20px;
         float: right;
     }
+    
 
     .select42-container .select42-selection--single .select42-selection__arrow {
+        position: absolute;
+        right: 0;
+        top: 10px;
         transition: transform 0.2s ease-in-out;
     }
 
@@ -300,6 +304,16 @@ export default {
         box-shadow: none;
         color: #495057;
     }
+
+    .select42-selection__rendered {
+        overflow: hidden;
+        width: calc(100% - 20px);
+        height: 100%;
+        display: block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
 
     .select42-container .select42-selection--single:focus,
     .select42-container .select42-selection--single.open {

@@ -163,10 +163,14 @@ export default {
                 window.removeEventListener("touchstart", this.handleOutsideClick);
             }
         },
+        closeDropdown() {
+            this.showDropdown = false;
+            window.removeEventListener("click", this.handleOutsideClick);
+            window.removeEventListener("touchstart", this.handleOutsideClick);
+        },
         selectOption(option) {
-            this.selectedOption = option;
-            this.toggleDropdown();
-            this.value = option.value;
+            this.setOption(option);
+            this.closeDropdown();
         },
         handleOutsideClick(event) {
             const select42 = this.$refs.select42;

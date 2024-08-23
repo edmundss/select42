@@ -213,6 +213,15 @@ export default {
                 this.filterOptions();
             }
         },
+        setOption(option) {
+            // check if exists in displayOptions
+            if (!this.displayOptions.find(opt => opt.value == option.value)) {
+                this.displayOptions.push(option);
+            }
+
+            this.selectedOption = option;
+            this.value = option.value;
+        }
     },
     mounted() {
         this.displayOptions = this.options;

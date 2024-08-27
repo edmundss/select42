@@ -135,8 +135,9 @@ export default {
                     this.selectedOption = null;
                 } else {
                     // find the selected option
-                    console.log(this.options);
                     this.selectedOption = this.displayOptions.find(option => option.value == value);
+                    console.log(this.selectedOption);
+                    
                 }
             }
         }

@@ -135,10 +135,18 @@ export default {
                     this.selectedOption = null;
                 } else {
                     // find the selected option
+                    console.log(this.displayOptions);
                     this.selectedOption = this.displayOptions.find(option => option.value == value);
                     console.log(this.selectedOption);
-                    
+
                 }
+            }
+        },
+        // watch for changes in the options
+        options: {
+            immediate: true,
+            handler(value) {
+                this.displayOptions = value;
             }
         }
     },
@@ -247,7 +255,7 @@ export default {
         height: 20px;
         float: right;
     }
-    
+
 
     .select42-container .select42-selection--single .select42-selection__arrow {
         position: absolute;

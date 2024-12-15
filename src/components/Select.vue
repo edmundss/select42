@@ -22,6 +22,8 @@
                     <span v-show="value == null" class="select42-selection__placeholder">{{ placeholder }}</span>
                     {{ selectedOption?.text }}
                 </span>
+                <!-- if option is selected, add x to clear selection -->
+                <span v-if="value != null" class="select42-selection__clear" @click="clearSelection">x</span>
                 <svg class="select42-selection__arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 10l5 5 5-5z"/>
                     <path d="M0 0h24v24H0z" fill="none"/>
@@ -151,6 +153,11 @@ export default {
         }
     },
     methods: {
+        clearSelection() {
+            this.selectedOption = null;
+            this.$emit('update:modelValue', null);
+            this.$emit('update:object', null);
+        },
         toggleDropdown() {
             this.showDropdown = !this.showDropdown;
 
@@ -244,6 +251,15 @@ export default {
   </script>
 
 <style>
+    .select42-selection__clear {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 16px;
+        color: #888;
+    }
     .select42-container .dropdown-wrapper {
         position: absolute;
         width: 100%;

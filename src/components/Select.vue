@@ -253,7 +253,7 @@ export default {
 <style>
     .select42-selection__clear {
         position: absolute;
-        right: 10px;
+        right: 20px;
         top: 50%;
         transform: translateY(-50%);
         cursor: pointer;

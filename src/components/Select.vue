@@ -204,7 +204,14 @@ export default {
                     q: this.searchTerm,
                 }
             }).then(response => {
-                this.displayOptions = response.data;
+                const fetchedOptions = response.data;
+                // check if selectedOption is in the response data
+                const selectedOption = this.displayOptions.find(option => option.value == this.value);
+                // if not, add it to the response data
+                if (!fetchedOptions.find(option => option.value == selectedOption.value)) {
+                    fetchedOptions.push(selectedOption);
+                }
+                this.displayOptions = fetchedOptions;
             });
         },
         handleKeydown(event) {

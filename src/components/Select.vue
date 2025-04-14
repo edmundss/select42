@@ -189,10 +189,8 @@ export default {
             this.closeDropdown();
         },
         handleOutsideClick(event) {
-            const select42 = this.$refs.select42;
-
             // If the clicked element is not the select42 element or its children, hide the dropdown
-            if (!select42.contains(event.target)) {
+            if (!this.$refs.select42?.contains(event.target)) {
                 this.toggleDropdown();
             }
         },

@@ -1,9 +1,9 @@
 <template>
     <span
-    tabindex="0"
-    class="select42 select42-container"
-    :class="[theme ? 'select42-' + theme : '', dropdownPosition ? 'select42-dropdown--' + dropdownPosition : '']"
-    ref="select42"
+        tabindex="0"
+        class="select42 select42-container"
+        :class="[theme ? 'select42-' + theme : '', dropdownPosition ? 'select42-dropdown--' + dropdownPosition : '']"
+        ref="select42"
     >
         <input
             type="hidden"
@@ -123,8 +123,8 @@ export default {
             set(value) {
                 this.$emit('update:modelValue', value)
                 this.$emit('update:object', this.selectedOption)
-                this.$emit('change', value)
-                this.$emit('select', value)
+                this.$emit('change', this.selectedOption)
+                this.$emit('select', this.selectedOption)
             }
         }
     },

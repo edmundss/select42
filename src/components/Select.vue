@@ -105,11 +105,11 @@ export default {
             default: "",
         },
     },
-    emits: ["update:modelValue", "update:object"],
+    emits: ["update:modelValue", "update:object", "change", "select", "clear"],
     data() {
         return {
             displayOptions: [],
-            selectedOption: {},
+            selectedOption: null,
             highlightIndex: 0,
             showDropdown: false,
             searchTerm: "",
@@ -123,6 +123,8 @@ export default {
             set(value) {
                 this.$emit('update:modelValue', value)
                 this.$emit('update:object', this.selectedOption)
+                this.$emit('change', value)
+                this.$emit('select', value)
             }
         }
     },
@@ -131,15 +133,12 @@ export default {
         modelValue: {
             immediate: true,
             handler(value) {
-                console.log(value);
                 // if modelValue is empty, set the selectedOption to null
                 if (!value) {
                     this.selectedOption = null;
                 } else {
                     // find the selected option
-                    console.log(this.displayOptions);
                     this.selectedOption = this.displayOptions.find(option => option.value == value);
-                    console.log(this.selectedOption);
 
                 }
             }
@@ -157,6 +156,8 @@ export default {
             this.selectedOption = null;
             this.$emit('update:modelValue', null);
             this.$emit('update:object', null);
+            this.$emit('clear');
+            this.$emit('change', null);
         },
         toggleDropdown() {
             this.showDropdown = !this.showDropdown;
@@ -204,13 +205,17 @@ export default {
                     q: this.searchTerm,
                 }
             }).then(response => {
-                const fetchedOptions = response.data;
-                // check if selectedOption is in the response data
+                const fetchedOptions = response.data ?? [];
+
                 const selectedOption = this.displayOptions.find(option => option.value == this.value);
-                // if not, add it to the response data
-                if (!fetchedOptions.find(option => option.value == selectedOption.value)) {
+
+                if (
+                    selectedOption &&
+                    !fetchedOptions.find(option => option.value == selectedOption.value)
+                ) {
                     fetchedOptions.push(selectedOption);
                 }
+
                 this.displayOptions = fetchedOptions;
             });
         },

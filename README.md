@@ -1,85 +1,235 @@
 # Select42 Vue Component
 
-Select42 is a Vue.js component that replicates the functionality of Select2 without the need for jQuery. It provides a customizable and user-friendly dropdown for selecting options. The component is built with Vue.js and does not have any external dependencies other than Vue itself.
+Select42 is a lightweight Vue.js select component inspired by Select2 — but built entirely without jQuery. It provides a clean, searchable, and customizable dropdown experience for Vue applications while keeping setup simple and dependency-free.
 
-DISCLAIMER: This is my first NPM package. developed for my specific needs. Use at your own risk. No support. May require bootstrap 5.
+Designed originally for internal enterprise applications, Select42 supports:
 
-## Installation
-You can install the Select42 component using npm:
-```
+- Searchable dropdowns
+- AJAX-powered async loading
+- `v-model` support
+- Custom option objects
+- Keyboard navigation
+- Clearable selections
+- Vue event emission
+- Bootstrap-friendly styling
+
+Unlike Select2, Select42 is built specifically for modern Vue projects and does not require jQuery or additional UI frameworks.
+
+> DISCLAIMER: This is my first NPM package and was originally developed for my own projects and workflows. It may not cover every edge case or use case. Use at your own risk. Community contributions are welcome.
+
+---
+
+# Installation
+
+Install via npm:
+
+```bash
 npm install @sulzanoks/select42
 ```
 
-## Usage
-To use the Select42 component, you can import it into your Vue project and register it as a local component:
-```
+---
+
+# Usage
+
+```vue
 <template>
-  <div>
-    <h2>Select42 Example</h2>
-    <select42
-      :options="options"
-      :placeholder="placeholder"
-      :ajaxUrl="ajaxUrl"
-      :showSearch="showSearch"
-      @update="handleOptionSelected"
-    ></select42>
-  </div>
+    <div>
+        <h2>Select42 Example</h2>
+
+        <Select42
+            ref="mySelect42Ref"
+            v-model="selectedValue"
+            :options="options"
+            :placeholder="placeholder"
+            :ajaxUrl="ajaxUrl"
+            :showSearch="showSearch"
+            @change="handleOptionSelected"
+        />
+    </div>
 </template>
 
 <script>
 import Select42 from "@sulzanoks/select42";
-import '@sulzanoks/select42/dist/style.css';
+import "@sulzanoks/select42/dist/style.css";
 
 export default {
-  components: {
-    select42,
-  },
-  data() {
-    return {
-      options: [
-                { value: '1', text: 'One' },
-                { value: '2', text: 'Two' },
-                { value: '3', text: 'Three' },
-      ],
-      placeholder: "Select an option",
-      ajaxUrl: "", // Your AJAX endpoint URL here, if applicable
-      showSearch: true,
-    };
-  },
-  methods: {
-    handleOptionSelected(option) {
-      console.log("Selected option:", option);
+    components: {
+        Select42,
     },
-  },
+
+    data() {
+        return {
+            selectedValue: null,
+
+            options: [
+                { value: "1", text: "One" },
+                { value: "2", text: "Two" },
+                { value: "3", text: "Three" },
+            ],
+
+            placeholder: "Select an option",
+
+            // Optional AJAX endpoint for async searching
+            ajaxUrl: "",
+
+            showSearch: true,
+        };
+    },
+
+    methods: {
+        handleOptionSelected(value) {
+            console.log("Selected value:", value);
+        },
+    },
 };
 </script>
 ```
 
-## Props
-| Property        | Type    | Default           | Description                                                                                                                                                            |
-|-----------------|---------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| options         | Array   | `[]`              | An array of objects representing the available options for the dropdown. Each object should have the properties `value` and `text`.                                    |
-| placeholder     | String  | "Select an option"| The text to display when no option is selected.                                                                                                                        |
-| theme           | String  | "primary"         | NOT IMPLEMENTED! The CSS class name for customizing the appearance of the component.                                                                                   |
-| dropdownPosition| String  | "bottom"          | NOT IMPLEMENTED! The position of the dropdown relative to the select box. Possible values are "bottom" (default) or "top".                                             |
-| ajaxUrl         | String  | `null`            | The URL to fetch options asynchronously when searching. If provided, the component will perform a search using this URL.                                               |
-| showSearch      | Boolean | `true`            | A boolean indicating whether to display the search input within the dropdown. Default is `true`.                                                                       |
+---
 
-## For convenience
-**value**: you can access selected value anytime with `this.$refs.mySelect42Ref.value` (where `mySelect42Ref` is ref name of your choice).
+# Props
 
-**selectedOption**: In case you've passed some extra data to options, you can access the whole selected option object with `this.$refs.mySelect42Ref.selectedOption` (where `mySelect42Ref` is ref name of your choice).
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `options` | `Array` | `[]` | Array of option objects. Each object should contain `value` and `text` properties. |
+| `placeholder` | `String` | `"Select an option"` | Placeholder text displayed when nothing is selected. |
+| `theme` | `String` | `"primary"` | Optional theme name used for CSS styling. |
+| `dropdownPosition` | `String` | `"bottom"` | Dropdown placement (`bottom` or `top`). |
+| `ajaxUrl` | `String` | `null` | AJAX endpoint used for async searching/loading options. |
+| `showSearch` | `Boolean` | `true` | Enables or disables the search input inside the dropdown. |
+| `modelValue` | `String \| Number` | `null` | Bound selected value used with `v-model`. |
 
-## Events
-**@update:modelValue**: This event is emitted when an option is selected. The selected option value is passed as the event payload.
+---
 
-**@update:object**: This event is emitted when an option is selected. The selected option object is passed as the event payload.
+# Option Format
 
-## Methods
-toggleDropdown: Toggles the visibility of the dropdown.
+Basic format:
 
-## Slots
-None.
+```js
+[
+    {
+        value: 1,
+        text: "Option Label"
+    }
+]
+```
 
-## License
-Select42 is released under the MIT License. Feel free to use and modify it according to your needs.
+You may also include additional custom fields:
+
+```js
+[
+    {
+        value: 1,
+        text: "John Doe",
+        email: "john@example.com",
+        department: "IT"
+    }
+]
+```
+
+The full selected object will still be available through events and refs.
+
+---
+
+# Events
+
+| Event | Description |
+|---|---|
+| `@update:modelValue` | Emitted when selected value changes. |
+| `@update:object` | Emits the full selected option object. |
+| `@change` | Emitted whenever the value changes. |
+| `@select` | Emitted only when an option is selected. |
+| `@clear` | Emitted when selection is cleared. |
+
+---
+
+# Accessing Selected Data
+
+You can access the current value or full selected object through component refs.
+
+### Selected value
+
+```js
+this.$refs.mySelect42Ref.value
+```
+
+### Selected option object
+
+```js
+this.$refs.mySelect42Ref.selectedOption
+```
+
+Example:
+
+```js
+console.log(this.$refs.mySelect42Ref.selectedOption.email);
+```
+
+---
+
+# AJAX Loading
+
+When `ajaxUrl` is provided, Select42 will automatically perform async searches while typing.
+
+Example endpoint response:
+
+```json
+[
+    {
+        "value": 1,
+        "text": "John Doe"
+    },
+    {
+        "value": 2,
+        "text": "Jane Smith"
+    }
+]
+```
+
+The request will include:
+
+```http
+GET /your-endpoint?q=searchTerm
+```
+
+---
+
+# Methods
+
+| Method | Description |
+|---|---|
+| `toggleDropdown()` | Toggles dropdown visibility. |
+| `closeDropdown()` | Closes the dropdown. |
+| `clearSelection()` | Clears the current selection. |
+
+---
+
+# Styling
+
+Select42 ships with its own stylesheet:
+
+```js
+import "@sulzanoks/select42/dist/style.css";
+```
+
+The component is designed to work well alongside Bootstrap 5, but Bootstrap itself is not required.
+
+---
+
+# Features
+
+- No jQuery dependency
+- Lightweight and simple
+- Vue-native implementation
+- Search support
+- AJAX support
+- Keyboard navigation
+- Clearable selections
+- Bootstrap-friendly UI
+- Custom option object support
+
+---
+
+# License
+
+Select42 is released under the MIT License.

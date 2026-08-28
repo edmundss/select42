@@ -98,6 +98,7 @@ export default {
 | `ajaxUrl` | `String` | `null` | AJAX endpoint used for async searching/loading options. |
 | `showSearch` | `Boolean` | `true` | Enables or disables the search input inside the dropdown. |
 | `modelValue` | `String \| Number` | `null` | Bound selected value used with `v-model`. |
+| `allowClear` | `Boolean` | `true` | Enables or disables the ability to clear the selection. |
 
 ---
 

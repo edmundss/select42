@@ -23,7 +23,7 @@
                     {{ selectedOption?.text }}
                 </span>
                 <!-- if option is selected, add x to clear selection -->
-                <span v-if="value != null" class="select42-selection__clear" @click="clearSelection">x</span>
+                <span v-if="value != null  && allowClear" class="select42-selection__clear" @click="clearSelection">x</span>
                 <svg class="select42-selection__arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 10l5 5 5-5z"/>
                     <path d="M0 0h24v24H0z" fill="none"/>
@@ -103,6 +103,10 @@ export default {
         modelValue: {
             type: [String, Number],
             default: "",
+        },
+        allowClear: {
+            type: Boolean,
+            default: true,
         },
     },
     emits: ["update:modelValue", "update:object", "change", "select", "clear"],
